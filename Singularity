@@ -2,13 +2,14 @@ BootStrap: docker
 From: ubuntu:16.04
 
 %post
+
     # install some system deps
     apt-get -y update
     apt-get -y install locales curl bzip2 less
     locale-gen en_US.UTF-8
     apt-get clean
 
-    # download and install miniconda2
+    # download and install miniconda3
     curl -sSL -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
     bash Miniconda3-latest-Linux-x86_64.sh -p /opt/miniconda3 -b
     rm -fr Miniconda3-latest-Linux-x86_64.sh
@@ -17,7 +18,7 @@ From: ubuntu:16.04
     conda config --add channels conda-forge
     conda config --add channels bioconda
 
-    # use conda to install some bioinfo tools
+    # install some bioinfo tools from Bioconda
     conda install --yes -c bioconda samtools==1.7
     conda install --yes -c bioconda bwa==0.7.17
     conda install --yes -c bioconda trimmomatic==0.36
@@ -35,7 +36,12 @@ From: ubuntu:16.04
     conda install --yes -c bioconda beast==1.8.4
     conda install --yes -c bioconda phylip==3.696
     conda install --yes -c bioconda paml==4.9
+
+    # install the R programming language
     conda install --yes -c conda-forge r-base==3.4.1
+
+    # install the jupyter notebook
+    conda install --yes jupyter
 
 %environment
     export LANG=en_US.UTF-8
@@ -90,3 +96,6 @@ From: ubuntu:16.04
 
 %apprun R
     R
+
+%apprun jupyter
+    jupyter
