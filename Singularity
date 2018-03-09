@@ -4,7 +4,7 @@ From: ubuntu:16.04
 %post
     # install some system deps
     apt-get -y update
-    apt-get -y install locales curl bzip2 less more
+    apt-get -y install locales curl bzip2 less
     locale-gen en_US.UTF-8
     apt-get clean
 
