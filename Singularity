@@ -5,7 +5,7 @@ From: ubuntu:16.04
 
     # install some system deps
     apt-get -y update
-    apt-get -y install locales curl bzip2 less
+    apt-get -y install locales curl bzip2 less unzip
     locale-gen en_US.UTF-8
     apt-get clean
 
@@ -43,6 +43,11 @@ From: ubuntu:16.04
     # install the jupyter notebook
     conda install --yes jupyter
 
+    # install TNT 
+    curl -sSL -O http://www.lillo.org.ar/phylogeny/tnt/tnt64.zip
+    unzip -p tnt64.zip tnt > /usr/local/bin/tnt
+    chmod +x /usr/local/bin/tnt
+
 %environment
     export LANG=en_US.UTF-8
     export LANGUAGE=en_US:en
@@ -50,52 +55,55 @@ From: ubuntu:16.04
     export PATH=/opt/miniconda3/bin:$PATH
 
 %apprun samtools
-    samtools
+    samtools "$@"
 
 %apprun bwa
-    bwa
+    bwa "$@"
 
 %apprun trimmomatic
-    trimmomatic
+    trimmomatic "$@"
 
 %apprun fastqc
-    fastqc
+    fastqc "$@"
 
 %apprun seqprep
-    seqprep
+    seqprep "$@"
 
 %apprun gatk4
-    gatk-launch
+    gatk-launch "$@"
 
 %apprun vcftools
-    vcftools
+    vcftools "$@"
 
 %apprun snpeff
-    snpeff
+    snpeff "$@"
 
 %apprun varscan
-    varscan
+    varscan "$@"
 
 %apprun muscle
-    varscan
+    varscan "$@"
 
 %apprun mafft
-    mafft
+    mafft "$@"
 
 %apprun raxml
-    raxmlHPC-PTHREADS
+    raxmlHPC-PTHREADS "$@"
 
 %apprun beast
-    beast
+    beast "$@"
 
 %apprun phylip
-    phylip
+    phylip "$@"
 
 %apprun paml
-    codeml
+    codeml "$@"
 
 %apprun R
-    R
+    R "$@"
 
 %apprun jupyter
-    jupyter
+    jupyter "$@"
+
+%apprun tnt
+    tnt "$@"
