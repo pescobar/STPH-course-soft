@@ -40,7 +40,8 @@ From: ubuntu:16.04
     conda install --yes -c bioconda beast==1.8.4
     conda install --yes -c bioconda phylip==3.696
     conda install --yes -c bioconda paml==4.9
-    conda install --yes -c bioconda qualimap==2.2.2a-2
+    conda install --yes -c bioconda qualimap==2.2.2a
+    conda install --yes -c bioconda picard==2.18.3
 
     # install the R programming language
     conda install --yes -c conda-forge r-base==3.4.1
@@ -103,6 +104,12 @@ From: ubuntu:16.04
 
 %apprun paml
     codeml "$@"
+
+%apprun picard
+    picard "$@"
+
+%apprun qualimap
+    qualimap "$@"
 
 %apprun R
     R "$@"
