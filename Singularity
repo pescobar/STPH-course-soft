@@ -6,6 +6,8 @@ From: ubuntu:16.04
     # install some system deps
     apt-get -y update
     apt-get -y install locales curl bzip2 less unzip
+    # this is a X11 dep for IGV
+    apt-get -y install libxext6
     locale-gen en_US.UTF-8
     apt-get clean
 
