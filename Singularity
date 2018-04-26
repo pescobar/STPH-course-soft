@@ -55,9 +55,16 @@ From: ubuntu:16.04
     chmod +x /usr/local/bin/tnt
 
     # donwload and uncompress figtree to /opt/FigTree_v1.4.3/
+    # also create a wrapper script in /usr/local/bin
     curl -sSL -o /opt/figtree.tgz "http://tree.bio.ed.ac.uk/download.php?id=96&num=3"
     tar -xvf /opt/figtree.tgz -C /opt/
     chmod +x /opt/FigTree_v1.4.3/bin/figtree
+    cat <<EOF >>/usr/local/bin/figtree
+#!/bin/sh
+cd /opt/FigTree_v1.4.3/
+java -Xms64m -Xmx512m -jar lib/figtree.jar $*
+EOF
+    chmod +x /usr/local/bin/figtree
 
 %environment
     export LANG=en_US.UTF-8
@@ -126,4 +133,4 @@ From: ubuntu:16.04
     tnt "$@"
 
 %apprun figtree
-    /opt/FigTree_v1.4.3/bin/figtree "@"
+    /usr/local/bin/figtree
