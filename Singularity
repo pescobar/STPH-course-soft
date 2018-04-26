@@ -57,6 +57,7 @@ From: ubuntu:16.04
     # donwload and uncompress figtree to /opt/FigTree_v1.4.3/
     curl -sSL -o /opt/figtree.tgz "http://tree.bio.ed.ac.uk/download.php?id=96&num=3"
     tar -xvf /opt/figtree.tgz -C /opt/
+    chmod +x /opt/FigTree_v1.4.3/bin/figtree
 
 %environment
     export LANG=en_US.UTF-8
