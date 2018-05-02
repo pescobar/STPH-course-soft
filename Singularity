@@ -46,6 +46,15 @@ From: ubuntu:16.04
     # install the R programming language
     conda install --yes -c conda-forge r-base==3.4.1
 
+    # install some dependencies to build R packages
+    conda install --yes -c conda-forge make
+    conda install --yes gfortran_linux-64
+    conda install --yes gxx_linux-64
+    conda install --yes gcc_linux-64
+
+    # install some extra R packages
+    Rscript -e "source ('https://bioconductor.org/biocLite.R'); biocLite(c('ape', 'pegas', 'adegenet', 'phangorn', 'sqldf', 'ggtree', 'ggplot2', 'phytools'))"
+
     # install the jupyter notebook
     conda install --yes jupyter
 
