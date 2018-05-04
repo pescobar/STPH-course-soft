@@ -60,6 +60,11 @@ From: ubuntu:16.04
     # install the jupyter notebook
     conda install --yes jupyter
 
+    # install R kernel for jupyter
+    Rscript -e "source ('https://bioconductor.org/biocLite.R'); biocLite(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))"
+    Rscript -e "devtools::install_github('IRkernel/IRkernel')"
+    Rscript -e "IRkernel::installspec(user = FALSE)"
+
     # install TNT 
     curl -sSL -O http://www.lillo.org.ar/phylogeny/tnt/tnt64.zip
     unzip -p tnt64.zip tnt > /usr/local/bin/tnt
