@@ -87,6 +87,7 @@ EOF
     export LANGUAGE=en_US:en
     export LC_ALL=en_US.UTF-8
     export PATH=/opt/miniconda3/bin:$PATH
+    export XDG_RUNTIME_DIR=""
 
 %apprun samtools
     samtools "$@"
