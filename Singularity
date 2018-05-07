@@ -10,6 +10,8 @@ From: ubuntu:16.04
     apt-get -y install libxext6
     # tools to open PDF and HTML files
     apt-get -y install firefox xpdf
+    # some extra devel libs
+    apt-get -y install zlib1g-dev libssl-dev
     locale-gen en_US.UTF-8
     apt-get clean
 
@@ -61,8 +63,10 @@ From: ubuntu:16.04
     conda install --yes jupyter
 
     # install R kernel for jupyter
-    Rscript -e "source ('https://bioconductor.org/biocLite.R'); biocLite(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))"
-    Rscript -e "devtools::install_github('IRkernel/IRkernel')"
+    Rscript -e "source ('https://bioconductor.org/biocLite.R'); biocLite(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'git2r', 'devtools', 'uuid', 'digest'))"
+    ln -s /bin/tar /bin/gtar
+    Rscript -e "devtools::install_url('https://github.com/IRkernel/IRkernel/archive/0.8.11.tar.gz')"
+    #Rscript -e "devtools::install_github('IRkernel/IRkernel')" # this one doesnt work
     Rscript -e "IRkernel::installspec(user = FALSE)"
 
     # install TNT 
